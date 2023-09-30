@@ -1,0 +1,9 @@
+.App {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: aliceblue;
+    min-height: 100vh;
+}
+
+div {
+    background-color: rgb(168, 75, 39);
+}
