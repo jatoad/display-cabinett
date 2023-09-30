@@ -1,9 +1,15 @@
 .App {
-    font-family: 'Cormorant Garamond', serif;
-    background-color: aliceblue;
+    font-family: 'Ultra', serif;
+    background-color: rgb(255, 255, 255);
     min-height: 100vh;
 }
 
-div {
-    background-color: rgb(168, 75, 39);
+.nav-link:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: blue
+}
+
+.Main {
+    padding-top: 81px;
 }
