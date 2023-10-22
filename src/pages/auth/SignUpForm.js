@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
+// import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 import {
@@ -48,15 +48,17 @@ const SignUpForm = () => {
 
         try {
 
+            console.log('signUpData ', signUpData)
             // Send registration message to Django BE
-            axios.post('/dj-rest-auth/registration',signUpData)
+            axios.post('/dj-rest-auth/registration/',signUpData)
 
             // define where we want to go next
-            history.push('/signin')
+            //history.push('/signin')
             
         } catch (err) {
             // Note ? means optional i.e. if response doesn't exist it won't raise an error. 
-            setErrors(err.response?.data)
+            console.log('SignUp err = ', err)
+            //setErrors(err.response?.data)
         }
 
     }
