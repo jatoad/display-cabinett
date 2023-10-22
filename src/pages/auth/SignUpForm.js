@@ -1,11 +1,20 @@
 import React, {useState} from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Image,
+  Col,
+  Row,
+  Container,
+  Alert,
+} from "react-bootstrap";
+import axios from "axios";
 
 const SignUpForm = () => {
     const [signUpData, setSignUpData] = useState({
@@ -14,7 +23,43 @@ const SignUpForm = () => {
         password2: ''
     })
 
+    // Get visibility of each sign up fields
     const {username, password1, password2 } = signUpData;
+
+    // Store errors so that they can be displayed ot the user
+    const [errors, setErrors] = useState ({
+
+    })
+    
+    const history = useHistory()
+    // generic handler for each paramter entered/changed on the form
+    const handleChange = (event) => {
+        setSignUpData ({
+            ...signUpData,
+            // creates a key value pair name and value
+            [event.target.name]: event.target.value,
+        })
+    }
+
+    const handleSubmit = async (event) => {
+
+        // this prevents the page from refreshing
+        event.preventDefault();
+
+        try {
+
+            // Send registration message to Django BE
+            axios.post('/dj-rest-auth/registration',signUpData)
+
+            // define where we want to go next
+            history.push('/signin')
+            
+        } catch (err) {
+            // Note ? means optional i.e. if response doesn't exist it won't raise an error. 
+            setErrors(err.response?.data)
+        }
+
+    }
 
     return (
     <Row className={styles.Row}>
@@ -22,7 +67,7 @@ const SignUpForm = () => {
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>sign up</h1>
 
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="username">
                     <Form.Label className="d-none">Usernane</Form.Label>
                     <Form.Control 
@@ -31,8 +76,15 @@ const SignUpForm = () => {
                         placeholder="Username" 
                         name="username"
                         value={username}
+                        onChange={handleChange}
                     />
                 </Form.Group>
+
+                {errors.username?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+                ))}
 
                 <Form.Group controlId="password1">
                     <Form.Label className="d-none">Password</Form.Label>
@@ -42,8 +94,15 @@ const SignUpForm = () => {
                         placeholder="Password" 
                         name="password1"
                         value={password1}
+                        onChange={handleChange}
                     />
                 </Form.Group>
+
+                {errors.password1?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+                ))}
 
                 <Form.Group controlId="password2">
                     <Form.Label className="d-none">Confirm Password</Form.Label>
@@ -53,12 +112,26 @@ const SignUpForm = () => {
                         placeholder="Confirm Password" 
                         name="password2"
                         value={password2}
+                        onChange={handleChange}
                     />
                 </Form.Group>
+
+                {errors.password2?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                    {message}
+                </Alert>
+                ))}
 
                 <Button className={`$(btnStyles.Button) $(btnStyles.Wide) $(btnStyles.Bright )`} type="submit">
                     Sign Up
                 </Button>
+
+                {errors.non_field_errors?.map((message, idx) => (
+                    <Alert key={idx} variant="warning" className="mt-3">
+                        {message}
+                    </Alert>
+                ))}
+
             </Form>
 
         </Container>
@@ -82,5 +155,6 @@ const SignUpForm = () => {
     </Row>
   );
 };
+
 
 export default SignUpForm;
