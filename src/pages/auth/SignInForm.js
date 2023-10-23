@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 import Form from "react-bootstrap/Form";
@@ -14,11 +14,11 @@ import { Link, useHistory } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { SetCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function SignInForm() {
   // setup access to the global context 
-  const setCurrentUser = useContext(SetCurrentUserContext);
+  const setCurrentUser = useSetCurrentUser();
 
   const [signInData, setSignInData] = useState({
     username: '',
@@ -47,6 +47,8 @@ function SignInForm() {
     } catch (err) {
         console.log('SignIn err = ', err)
 
+        /// set user as inout params to make it work
+        // FIX later when API working
         setCurrentUser(signInData);
        //setErrors(err.response?.data);
     }
