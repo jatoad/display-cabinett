@@ -33,7 +33,7 @@ const NavBar = () => {
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/drawer/create"
+      to="/drawers/create"
     >
       <i className="far fa-plus-square"></i>Add Drawer
     </NavLink>
