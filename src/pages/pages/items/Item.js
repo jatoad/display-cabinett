@@ -5,6 +5,7 @@ import Avatar from "../../components/Avatar";
 import styles from "../../styles/Item.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Item = (props) => {
     const { id,
@@ -16,13 +17,19 @@ const Item = (props) => {
             updated_at, 
             description, 
             image,
+            setDrawer,
             setItems,
         } = props;
 
     const currentUser = useCurrentUser();
-    const is_owner = currentUser?.username === owner;
+    // Should be username. NEED to sort this out
+    //const is_owner = currentUser?.username === owner;
+    const is_owner = currentUser?.owner === owner;
 
-    console.log('is_owner = ', is_owner)
+    // console.log('is_owner = ', is_owner)
+    // console.log('id = ', id)
+    // console.log('owner = ', owner)
+    console.log('currentUser = ', currentUser)
 
     const handleLike = async () => {
         try {
@@ -57,7 +64,26 @@ const Item = (props) => {
         console.log(err);
         }
     };
-            
+
+    const handleDelete = async () => {
+        try {
+          await axiosRes.delete(`/items/${id}/`);
+          setDrawer((prevDrawer) => ({
+            results: [
+              {
+                ...prevDrawer.results[0],
+                items_count: prevDrawer.results[0].items_count - 1,
+              },
+            ],
+          }));
+    
+          setItems((prevItems) => ({
+            ...prevItems,
+            results: prevItems.results.filter((item) => item.id !== id),
+          }));
+        } catch (err) {}
+      };
+
   return (
     <div>
       <hr />
@@ -71,34 +97,37 @@ const Item = (props) => {
           <span className={styles.Date}>{updated_at}</span>
           <p>{description}</p>
           <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own item!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-            
-            // should be like_id  but use test_like_id
-          ) : like_id ? (
-            <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
-            </span>
-          ) : currentUser ? (
-            <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
-            </span>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like items!</Tooltip>}
-            >
-              <i className="far fa-heart" />
-            </OverlayTrigger>
-          )}
-          {likes_count}
-        </div>
+            {is_owner ? (
+                <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't like your own item!</Tooltip>}
+                >
+                <i className="far fa-heart" />
+                </OverlayTrigger>
+                
+                // should be like_id  but use test_like_id
+            ) : like_id ? (
+                <span onClick={handleUnlike}>
+                <i className={`fas fa-heart ${styles.Heart}`} />
+                </span>
+            ) : currentUser ? (
+                <span onClick={handleLike}>
+                <i className={`far fa-heart ${styles.HeartOutline}`} />
+                </span>
+            ) : (
+                <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like items!</Tooltip>}
+                >
+                <i className="far fa-heart" />
+                </OverlayTrigger>
+            )}
+            {likes_count}
+          </div>
         </Media.Body>
+        {is_owner && (
+          <MoreDropdown handleEdit={() => {}} handleDelete={handleDelete} />
+        )}
       </Media>
     </div>
   );

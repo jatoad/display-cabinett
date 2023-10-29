@@ -1,7 +1,7 @@
 {
     "id": 1,
-    "owner": "charlie",
-    "is_owner": false,
+    "owner": "toad",
+    "is_owner": true,
     "profile_id": 1,
     "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
     "created_at": "09 Oct 2023",

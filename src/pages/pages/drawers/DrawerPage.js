@@ -26,7 +26,7 @@ function DrawerPage() {
     let testMode = true
 
     const currentUser =  useCurrentUser();
-    const profile_image = currentUser?.profile_image;
+    //const profile_image = currentUser?.profile_image;
 
     const [items, setItems] = useState({ results: [] });
 
@@ -87,7 +87,7 @@ function DrawerPage() {
 
             {test_items.results.length ? (
                 test_items.results.map((item) => (
-                    <Item key={item.id} {...item} />
+                    <Item key={item.id} {...item} setDrawer={setDrawer} setitems={setItems}/>
                 ))
             // is User logged in?
             ) : currentUser ? (
