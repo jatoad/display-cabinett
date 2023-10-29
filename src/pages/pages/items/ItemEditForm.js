@@ -12,14 +12,16 @@ import btnStyles from "../../styles/Button.module.css";
 import { Image } from "react-bootstrap";
 
 import styles from "../../styles/ItemCreateEditForm.module.css";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory, useParams } from "react-router";
 
 import test_item from '../../test/test_item.json'
 
 function ItemEditForm(props) {
+
+  const { setShowEditForm } = props;
+
   const [errors, setErrors] = useState({});
-  const { drawer, setDrawer, setItems, profileImage, profile_id } = props;
 
   const [itemData, setItemData] = useState({
     description: "",
@@ -40,7 +42,7 @@ function ItemEditForm(props) {
         is_owner ? setItemData({ description, image }) : history.push("/");
       } else {
         try {
-            const { data } = await axiosRes.get(`/items/${id}/`);
+            const { data } = await axiosReq.get(`/items/${id}/`);
             const { description, image, is_owner } = data;
 
             is_owner ? setItemData({ description, image }) : history.push("/");
@@ -74,26 +76,16 @@ function ItemEditForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("description", description);
+
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
     try {
-      const { data } = await axiosRes.post("/items/", {
-        description,
-        drawer,
-        image,
-        profileImage,
-        profile_id,
-      });
-      setItems((prevItems) => ({
-        ...prevItems,
-        results: [data, ...prevItems.results],
-      }));
-      setDrawer((prevDrawer) => ({
-        results: [
-          {
-            ...prevDrawer.results[0],
-            items_count: prevDrawer.results[0].items_count + 1,
-          },
-        ],
-      }));
+      // Put will update the existing drawer
+      await axiosReq.put(`/items/${id}/`, formData);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -123,7 +115,7 @@ function ItemEditForm(props) {
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
+        onClick={() => setShowEditForm(false)}
       >
         cancel
       </Button>

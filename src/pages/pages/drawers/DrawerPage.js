@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
@@ -86,9 +86,20 @@ function DrawerPage() {
             ) : null}
 
             {test_items.results.length ? (
-                test_items.results.map((item) => (
-                    <Item key={item.id} {...item} setDrawer={setDrawer} setitems={setItems}/>
-                ))
+                <InfiniteScroll
+                    children={test_items.results.map((item) => (
+                    <Item
+                        key={item.id}
+                        {...item}
+                        setDrawer={setDrawer}
+                        setItems={setItems}
+                    />
+                    ))}
+                    dataLength={test_items.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!test_items.next}
+                    next={() => fetchMoreData(test_items, setItems)}
+                />
             // is User logged in?
             ) : currentUser ? (
                 <span>No items yet, be the first to add an item!</span>
