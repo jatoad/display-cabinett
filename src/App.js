@@ -34,6 +34,7 @@ function App() {
               <Route exact path="/drawers/create" render={() => <DrawerCreateForm />} />
               <Route exact path="/drawers/:id/edit" render={() => <DrawerEditForm />} />
               <Route exact path="/drawers/:id" render={() => <DrawerPage />} />
+              <Route exact path="/drawers/" render={() => <DrawersPage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
           </Container>

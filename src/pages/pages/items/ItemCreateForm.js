@@ -1,8 +1,6 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import Upload from "../../assets/upload.png";
 
 import appStyles from "../../App.module.css";
@@ -11,7 +9,6 @@ import Asset from "../../components/Asset";
 import { Image } from "react-bootstrap";
 
 import styles from "../../styles/ItemCreateEditForm.module.css";
-import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 
 function ItemCreateForm(props) {
@@ -51,6 +48,9 @@ function ItemCreateForm(props) {
       const { data } = await axiosRes.post("/items/", {
         description,
         drawer,
+        image,
+        profileImage,
+        profile_id,
       });
       setItems((prevItems) => ({
         ...prevItems,
@@ -64,7 +64,6 @@ function ItemCreateForm(props) {
           },
         ],
       }));
-      //setDescription("");
     } catch (err) {
       console.log(err);
     }
@@ -107,16 +106,17 @@ function ItemCreateForm(props) {
             ref={imageInput}
           />
   
-        <InputGroup>
+        <Form.Group>
+          <Form.Label>Description</Form.Label>
           <Form.Control
-            className={styles.Form}
-            placeholder="Item description.."
             as="textarea"
+            rows={6}
+            name="description"
             value={description}
             onChange={handleChange}
-            rows={4}
           />
-        </InputGroup>
+        </Form.Group>
+  
       </Form.Group>
       <button
         className={`${styles.Button} btn d-block ml-auto`}
