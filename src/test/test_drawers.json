@@ -1,0 +1,35 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 2,
+            "owner": "a",
+            "is_owner": false,
+            "profile_id": 1,
+            "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
+            "created_at": "18 Oct 2023",
+            "updated_at": "18 Oct 2023",
+            "title": "Sea Shells",
+            "description": "The shells from the sea",
+            "image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/G0040204_p7bv7m",
+            "image_filter": "normal",
+            "items_count": 1
+        },
+        {
+            "id": 1,
+            "owner": "a",
+            "is_owner": false,
+            "profile_id": 1,
+            "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
+            "created_at": "09 Oct 2023",
+            "updated_at": "09 Oct 2023",
+            "title": "Paleo project",
+            "description": "Findings from Kimmerage",
+            "image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/ichth_etches_zy9yvq",
+            "image_filter": "normal",
+            "items_count": 2
+        }
+    ]
+}

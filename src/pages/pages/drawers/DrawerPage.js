@@ -9,6 +9,10 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
+import test_drawer from '../../test/test_drawer.json'
+
+import Drawer from "./Drawer"
+
 function DrawerPage() {
     const { id } = useParams();
     const [drawer, setDrawer] = useState({ results: [] });
@@ -39,9 +43,9 @@ function DrawerPage() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles for mobile</p>
         <p>Drawer component</p>
-        <Container className={appStyles.Content}>
-          Items
-        </Container>
+        {/* <Drawer {...drawer.results[0]} setPosts={setPost} postPage /> */}
+        <Drawer {...test_drawer} setDrawers={setDrawer} drawerPage />
+        <Container className={appStyles.Content}>Items</Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         Popular profiles for desktop
