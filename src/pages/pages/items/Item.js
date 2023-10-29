@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Media, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -6,6 +6,7 @@ import styles from "../../styles/Item.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import ItemEditForm from "./ItemEditForm";
 
 const Item = (props) => {
     const { id,
@@ -21,6 +22,7 @@ const Item = (props) => {
             setItems,
         } = props;
 
+    const [showEditForm, setShowEditForm] = useState(false);
     const currentUser = useCurrentUser();
     // Should be username. NEED to sort this out
     //const is_owner = currentUser?.username === owner;
@@ -95,7 +97,19 @@ const Item = (props) => {
           <Card.Img src={image}/>
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
-          <p>{description}</p>
+          {showEditForm ? (
+            <ItemEditForm
+              id={id}
+              profile_id={profile_id}
+              description={description}
+              image={image}
+              profileImage={profile_image}
+              setItems={setItems}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <p>{description}</p>
+          )}
           <div className={styles.PostBar}>
             {is_owner ? (
                 <OverlayTrigger
@@ -104,8 +118,6 @@ const Item = (props) => {
                 >
                 <i className="far fa-heart" />
                 </OverlayTrigger>
-                
-                // should be like_id  but use test_like_id
             ) : like_id ? (
                 <span onClick={handleUnlike}>
                 <i className={`fas fa-heart ${styles.Heart}`} />
@@ -124,9 +136,13 @@ const Item = (props) => {
             )}
             {likes_count}
           </div>
+
         </Media.Body>
-        {is_owner && (
-          <MoreDropdown handleEdit={() => {}} handleDelete={handleDelete} />
+        {is_owner && !showEditForm && (
+          <MoreDropdown
+            handleEdit={() => setShowEditForm(true)}
+            handleDelete={handleDelete}
+          />
         )}
       </Media>
     </div>

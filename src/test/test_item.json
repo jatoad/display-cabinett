@@ -1,43 +1,14 @@
 {
-    "count": 3,
-    "next": null,
-    "previous": null,
-    "results": [
-        {
-            "id": 3,
-            "owner": "toad",
-            "is_owner": true,
-            "drawer": 2,
-            "profile_id": 1,
-            "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
-            "created_at": "3 days, 17 hours ago",
-            "updated_at": "3 days, 17 hours ago",
-            "description": "The sea shell that we like",
-            "image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/IMG_0330_hoso4l"
-        },
-        {
-            "id": 2,
-            "owner": "toad",
-            "is_owner": true,
-            "drawer": 1,
-            "profile_id": 1,
-            "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
-            "created_at": "1 week, 4 days ago",
-            "updated_at": "a minute ago",
-            "description": "Hello bleff",
-            "image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/b000a208-ffde-4ef2-bf23-90d8b152e405_tqj51r"
-        },
-        {
-            "id": 1,
-            "owner": "toad",
-            "is_owner": true,
-            "drawer": 1,
-            "profile_id": 1,
-            "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
-            "created_at": "1 week, 5 days ago",
-            "updated_at": "15 seconds ago",
-            "description": "This is my 1st item EVER",
-            "image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/Photo_from_Charlie_rxrnwd"
-        }
-    ]
+    "id": 1,
+    "owner": "toad",
+    "is_owner": true,
+    "drawer": 1,
+    "profile_id": 1,
+    "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
+    "created_at": "1 week, 5 days ago",
+    "updated_at": "15 seconds ago",
+    "description": "This is my 1st item EVER",
+    "like_id": 1,
+    "likes_count": 1,
+    "image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/Photo_from_Charlie_rxrnwd"
 }

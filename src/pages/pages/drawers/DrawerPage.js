@@ -46,7 +46,7 @@ function DrawerPage() {
                 try {
                     const [{ data: drawer }, { data: items }] = await Promise.all([
                         // Get drawers for the current owner and items from drawer
-                        axiosReq.get(`/posts/${id}`),
+                        axiosReq.get(`/drawers/${id}`),
                         axiosReq.get(`/items/?drawer=${id}`),
                     ]);
                     setDrawer({ results: [drawer] });
