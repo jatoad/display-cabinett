@@ -10,6 +10,9 @@ import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
+import ItemCreateForm from "../items/ItemCreateForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
 import test_drawer from '../../test/test_drawer.json'
 
 
@@ -18,6 +21,13 @@ function DrawerPage() {
     const [drawer, setDrawer] = useState({ results: [] });
 
     let testMode = true
+
+    const currentUser =  useCurrentUser();
+    const profile_image = currentUser?.profile_image;
+
+    const [items, setItems] = useState({ results: [] });
+
+    console.log('currentUser ', currentUser)
 
     useEffect(() => {
         const handleMount = async () => {
@@ -50,7 +60,20 @@ function DrawerPage() {
         <p>Drawer component</p>
         {/* <Drawer {...drawer.results[0]} setPosts={setPost} postPage /> */}
         <Drawer {...test_drawer} setDrawers={setDrawer} drawerPage />
-        <Container className={appStyles.Content}>Items</Container>
+        <Container className={appStyles.Content}>
+            {currentUser ? (
+            <ItemCreateForm
+                profile_id={currentUser.profile_id}
+                profileImage={profile_image}
+                drawer={id}
+                setDrawer={setDrawer}
+                setitems={setItems}
+                />
+            ) : items.results.length ? (
+                "items"
+            ) : null}
+        
+        </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
         Popular profiles for desktop
