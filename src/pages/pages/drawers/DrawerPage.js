@@ -17,22 +17,27 @@ function DrawerPage() {
     const { id } = useParams();
     const [drawer, setDrawer] = useState({ results: [] });
 
+    let testMode = true
 
     useEffect(() => {
         const handleMount = async () => {
-          try {
-            const [{ data: drawer }] = await Promise.all([
-              axiosReq.get(`/drawers/${id}/`), {headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true
-          }]);
-            setDrawer({ results: [drawer] });
+            if (testMode) {
+                setDrawer({ results: [test_drawer] });
+            } else {
+                try {
+                    const [{ data: drawer }] = await Promise.all([
+                    axiosReq.get(`/drawers/${id}/`), {headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                    },
+                    withCredentials: true
+                }]);
+                    setDrawer({ results: [drawer] });
+                } catch (err) {
+                    console.log(err);
+                }
+            } 
             console.log(drawer);
-          } catch (err) {
-            console.log(err);
-          }
         };
     
         handleMount();

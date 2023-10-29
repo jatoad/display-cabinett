@@ -2,8 +2,10 @@ import React from "react";
 import styles from "../../styles/Drawer.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Drawer = (props) => {
   const {
@@ -19,8 +21,27 @@ const Drawer = (props) => {
     drawerPage,
   } = props;
 
+  let testMode = true
+
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
+  const is_owner = (testMode ? (true) : (currentUser?.username === owner));
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/drawers/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/drawers/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  console.log('drawerPage ', drawerPage)
+  console.log('is_owner ', is_owner)
 
   return (
     <Card className={styles.Drawer}>
@@ -32,11 +53,15 @@ const Drawer = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && drawerPage && "..."}
+            {is_owner && drawerPage &&               
+                <MoreDropdown
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                />}
           </div>
         </Media>
       </Card.Body>
-      <Link to={`/posts/${id}`}>
+      <Link to={`/drawers/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>

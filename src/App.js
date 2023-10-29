@@ -6,6 +6,7 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import DrawerCreateForm from "./pages/drawers/DrawerCreateForm";
+import DrawerEditForm from "./pages/drawers/DrawerEditForm";
 import DrawerPage from "./pages/drawers/DrawerPage";
 import DrawersPage from "./pages/drawers/DrawersPage";
 
@@ -31,7 +32,7 @@ function App() {
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />
               <Route exact path="/drawers/create" render={() => <DrawerCreateForm />} />
-              {/* <Route exact path="/drawers/:id" render={() => <DrawerPage />} /> */}
+              <Route exact path="/drawers/:id/edit" render={() => <DrawerEditForm />} />
               <Route exact path="/drawers/:id" render={() => <DrawerPage />} />
               <Route render={() => <p>Page not found!</p>} />
             </Switch>
