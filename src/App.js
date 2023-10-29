@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import DrawerCreateForm from "./pages/drawers/DrawerCreateForm";
 import DrawerPage from "./pages/drawers/DrawerPage";
+import DrawersPage from "./pages/drawers/DrawersPage";
 
 function App() {
 
@@ -19,6 +20,13 @@ function App() {
           <NavBar />
           <Container className={styles.Main}>
             <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => (
+                  <DrawersPage message="No results found. Adjust the search keyword." />
+                )}
+              />
               <Route exact path="/" render={() => <h1>Home page</h1>} />
               <Route exact path="/signin" render={() => <SignInForm />} />
               <Route exact path="/signup" render={() => <SignUpForm />} />

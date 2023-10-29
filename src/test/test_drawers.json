@@ -5,7 +5,7 @@
     "results": [
         {
             "id": 2,
-            "owner": "a",
+            "owner": "charlie",
             "is_owner": false,
             "profile_id": 1,
             "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
@@ -19,7 +19,7 @@
         },
         {
             "id": 1,
-            "owner": "a",
+            "owner": "charlie",
             "is_owner": false,
             "profile_id": 1,
             "profile_image": "https://res.cloudinary.com/dxgghjw7c/image/upload/v1/media/images/862MW_small_nufvng",
