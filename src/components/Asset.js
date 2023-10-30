@@ -12,4 +12,4 @@ const Asset = ({ spinner, src, message }) => {
   );
 };
 
-export default Assets
+export default Asset
