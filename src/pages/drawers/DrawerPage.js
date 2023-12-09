@@ -35,7 +35,7 @@ function DrawerPage() {
 
     useEffect(() => {
         const handleMount = async () => {
-            if (process.env.REACT_APP_TEST_MODE === 'true') {
+            if (process.env.REACT_APP_TEST_MODE === 'false') {
                 // Note  that results is the key in the json where the data is set
                 setDrawer({ results: [test_drawer] });
                 setItems({ results: [test_items] });
