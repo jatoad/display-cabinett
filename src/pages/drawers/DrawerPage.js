@@ -23,7 +23,6 @@ function DrawerPage() {
     const { id } = useParams();
     const [drawer, setDrawer] = useState({ results: [] });
 
-    let testMode = true
 
     const currentUser =  useCurrentUser();
     //const profile_image = currentUser?.profile_image;
@@ -36,7 +35,7 @@ function DrawerPage() {
 
     useEffect(() => {
         const handleMount = async () => {
-            if (testMode) {
+            if (process.env.REACT_APP_TEST_MODE === 'true') {
                 // Note  that results is the key in the json where the data is set
                 setDrawer({ results: [test_drawer] });
                 setItems({ results: [test_items] });

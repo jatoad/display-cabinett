@@ -21,10 +21,8 @@ const Drawer = (props) => {
     drawerPage,
   } = props;
 
-  let testMode = true
-
   const currentUser = useCurrentUser();
-  const is_owner = (testMode ? (true) : (currentUser?.username === owner));
+  const is_owner = (process.env.REACT_APP_TEST_MODE === 'true' ? (true) : (currentUser?.username === owner));
   const history = useHistory();
 
   const handleEdit = () => {

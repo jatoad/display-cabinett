@@ -32,12 +32,10 @@ function ItemEditForm(props) {
   const { id } = useParams();
   // Image save location
   const imageInput = useRef(null);
-  
-  let testMode = true
 
   useEffect(() => {
     const handleMount = async () => {
-      if (testMode) {
+      if (process.env.REACT_APP_TEST_MODE === 'true') {
         const { description, image, is_owner } = test_item;
         is_owner ? setItemData({ description, image }) : history.push("/");
       } else {

@@ -31,11 +31,9 @@ function DrawerEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
-  let testMode = true
-
   useEffect(() => {
     const handleMount = async () => {
-      if (testMode) {
+      if (process.env.REACT_APP_TEST_MODE === 'true') {
         const { title, description, image, is_owner } = test_drawer;
         is_owner ? setDrawerData({ title, description, image }) : history.push("/");
       } else {

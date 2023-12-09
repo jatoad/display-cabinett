@@ -15,8 +15,6 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
 export const CurrentUserProvider = ({ children }) => {
 
-    let testMode = true
-    
     // Store the current user
     const [currentUser, setCurrentUser] = useState(null);
     const history = useHistory();
@@ -24,7 +22,7 @@ export const CurrentUserProvider = ({ children }) => {
     // Load the current user when app is mounted/starts
     // called once when app starts
     const handleMount = async () => {
-        if (testMode) {
+        if (process.env.REACT_APP_TEST_MODE === 'true') {
             setCurrentUser(test_drawer)
         } else {
             try {
