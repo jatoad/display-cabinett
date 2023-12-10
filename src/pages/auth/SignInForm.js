@@ -43,14 +43,14 @@ function SignInForm() {
         // Store global context user if login OK
         // set user
         setCurrentUser(data.user);
-    //   history.push("/");
+        history.push("/");
     } catch (err) {
         console.log('SignIn err = ', err)
 
         /// set user as inout params to make it work
         // FIX later when API working
-        setCurrentUser(signInData);
-       //setErrors(err.response?.data);
+      //  SetCurrentUser(signInData);
+       setErrors(err.response?.data);
     }
   };
 

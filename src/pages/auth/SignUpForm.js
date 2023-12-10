@@ -53,12 +53,12 @@ const SignUpForm = () => {
             axios.post('/dj-rest-auth/registration/',signUpData)
 
             // define where we want to go next
-            //history.push('/signin')
+            history.push('/signin')
             
         } catch (err) {
             // Note ? means optional i.e. if response doesn't exist it won't raise an error. 
             console.log('SignUp err = ', err)
-            //setErrors(err.response?.data)
+            setErrors(err.response?.data)
         }
 
     }
