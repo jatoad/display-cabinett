@@ -40,7 +40,6 @@ function DrawerPage() {
                 setDrawer({ results: [test_drawer] });
                 setItems({ results: [test_items] });
 
-                console.log('HM TM')
             } else {
                 try {
                     const [{ data: drawer }, { data: items }] = await Promise.all([
@@ -48,10 +47,11 @@ function DrawerPage() {
                         axiosReq.get(`/drawers/${id}`),
                         axiosReq.get(`/items/?drawer=${id}`),
                     ]);
-                    setDrawer({ results: [drawer] });
-                    setItems({ results: [items] });
+
+                    setDrawer(drawer);
+                    setItems(items);
                 } catch (err) {
-                    console.log(err);
+                    console.log('get err', err);
                 }
             } 
             console.log('drawer = ', drawer);

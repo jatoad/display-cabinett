@@ -28,10 +28,10 @@ const Item = (props) => {
     //const is_owner = currentUser?.username === owner;
     const is_owner = currentUser?.owner === owner;
 
-    // console.log('is_owner = ', is_owner)
-    // console.log('id = ', id)
+    console.log('is_owner = ', is_owner)
+    console.log('probs = ', props)
     // console.log('owner = ', owner)
-    console.log('currentUser = ', currentUser)
+    console.log('Item currentUser = ', currentUser)
 
     const handleLike = async () => {
         try {

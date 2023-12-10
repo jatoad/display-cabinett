@@ -62,6 +62,7 @@ function DrawerCreateForm() {
     formData.append("image", imageInput.current.files[0]);
 
     try {
+      console.log('Create Drawer ', formData);
       // Refresh the users access token as we are sending an image
       const { data } = await axiosReq.post("/drawers/", formData);
       history.push(`/drawers/${data.id}`);
