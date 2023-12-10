@@ -45,7 +45,8 @@ function SignInForm() {
         setCurrentUser(data.user);
         history.push("/");
     } catch (err) {
-        console.log('SignIn err = ', err)
+        // console.log('SignIn err = ', err)
+        console.log('SignIn err.response = ', err.response)
 
         /// set user as inout params to make it work
         // FIX later when API working
