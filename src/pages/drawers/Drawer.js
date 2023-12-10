@@ -22,7 +22,7 @@ const Drawer = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
-  const is_owner = (process.env.REACT_APP_TEST_MODE === 'false' ? (true) : (currentUser?.username === owner));
+  const is_owner = (currentUser?.username === owner);
   const history = useHistory();
 
   const handleEdit = () => {
@@ -38,6 +38,7 @@ const Drawer = (props) => {
     }
   };
 
+  console.log('currentUser ', currentUser)
   console.log('drawerPage ', drawerPage)
   console.log('is_owner ', is_owner)
 
@@ -51,7 +52,7 @@ const Drawer = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && drawerPage &&               
+            {is_owner &&
                 <MoreDropdown
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}

@@ -30,6 +30,7 @@ function DrawersPage({ message, filter = "" }) {
         } else {
             const { data } = await axiosReq.get(`/drawers/?${filter}`);
             setDrawers(data);
+            console.log('Drawers = ', data);
         }
         // Stop spinner
         setHasLoaded(true);
@@ -47,8 +48,7 @@ function DrawersPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles mobile</p>
-
+        {/* <p>Popular profiles mobile</p> */}
 
         {hasLoaded ? (
           <>
