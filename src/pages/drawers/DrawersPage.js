@@ -22,12 +22,10 @@ function DrawersPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
 
-  let testMode = true
-
   useEffect(() => {
     const fetchDrawers = async () => {
       try {
-        if (process.env.REACT_APP_TEST_MODE === 'true') {
+        if (process.env.REACT_APP_TEST_MODE === 'false') {
             setDrawers(test_drawers);
         } else {
             const { data } = await axiosReq.get(`/drawers/?${filter}`);

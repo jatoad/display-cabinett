@@ -20,7 +20,7 @@ export const CurrentUserProvider = ({ children }) => {
     // Load the current user when app is mounted/starts
     // called once when app starts
     const handleMount = async () => {
-        if (process.env.REACT_APP_TEST_MODE === 'true') {
+        if (process.env.REACT_APP_TEST_MODE === 'false') {
             setCurrentUser(test_drawer)
         } else {
             try {
