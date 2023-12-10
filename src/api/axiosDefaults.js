@@ -1,8 +1,7 @@
 import axios from "axios"
 
 // local URL
-// axios.defaults.baseURL = 'https://full-stack-django-0f48f57393c6.herokuapp.com/' 
-axios.defaults.baseURL = 'https://jatoad-drfapi-jmeq3hfqsnn.ws-eu106.gitpod.io/' 
+axios.defaults.baseURL = 'https://full-stack-django-0f48f57393c6.herokuapp.com/' 
 
 // axios.defaults.headers.post['Content-Type'] = 'multipart/form-data'
 // // axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'true'
