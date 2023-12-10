@@ -70,7 +70,7 @@ function DrawerPage() {
         <p>Drawer component</p> */}
         {/* Do we need the owner image here? */}
         {/* <Drawer {...drawer.results[0]} setDrawers={setDrawer} drawerPagePage /> */}
-        <Drawer {...test_drawer} setDrawers={setDrawer} drawerPage />
+        <Drawer {...drawer} setDrawers={setDrawer} drawerPage />
         <Container className={appStyles.Content}>
             {currentUser ? (
                 <ItemCreateForm
@@ -84,9 +84,9 @@ function DrawerPage() {
                 "items"
             ) : null}
 
-            {test_items.results.length ? (
+            {items.results.length ? (
                 <InfiniteScroll
-                    children={test_items.results.map((item) => (
+                    children={items.results.map((item) => (
                     <Item
                         key={item.id}
                         {...item}
@@ -94,10 +94,10 @@ function DrawerPage() {
                         setItems={setItems}
                     />
                     ))}
-                    dataLength={test_items.results.length}
+                    dataLength={items.results.length}
                     loader={<Asset spinner />}
-                    hasMore={!!test_items.next}
-                    next={() => fetchMoreData(test_items, setItems)}
+                    hasMore={!!items.next}
+                    next={() => fetchMoreData(items, setItems)}
                 />
             // is User logged in?
             ) : currentUser ? (
