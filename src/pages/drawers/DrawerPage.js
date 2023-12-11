@@ -54,8 +54,8 @@ function DrawerPage() {
                     console.log('get err', err);
                 }
             } 
-            console.log('drawer = ', drawer);
-            console.log('items = ', items);
+            // console.log('drawer = ', drawer);
+            // console.log('items = ', items);
         };
     
         console.log('HM');
@@ -87,12 +87,14 @@ function DrawerPage() {
             {items.results.length ? (
                 <InfiniteScroll
                     children={items.results.map((item) => (
+                    
                     <Item
                         key={item.id}
                         {...item}
                         setDrawer={setDrawer}
                         setItems={setItems}
                     />
+
                     ))}
                     dataLength={items.results.length}
                     loader={<Asset spinner />}
