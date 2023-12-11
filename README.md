@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+## Display Cabinet
+Display Cabinet is a comprehensive application designed to facilitate the organization and presentation of personal collections. made for enthusiasts and collectors, this app serves as a showcase for users to upload, categorize, and exhibit their possessions.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To initiate the process, users are encouraged to upload high-quality images and information on each item in their collection. The app employs an intuitive categorization system, allowing for efficient sorting and cataloging. This organization allows the user to transform their various collections into a curated gallery, providing users with a structured and visually appealing overview of their collection.
 
-## Available Scripts
+Beyond its organizational capabilities, Display Cabinet distinguishes itself as a social platform for collectors and like-minded individuals, to view other collections through browsing other users' cabinet drawers.
 
-In the project directory, you can run:
+In summary, Display Cabinet serves as a tool for collectors to not only archive and categorize their items but also engage with a community of fellow enthusiasts. By adhering to the structured approach outlined within the app, users can create a comprehensive and visually pleasing digital representation of their collections while participating in a broader community of collectors.
 
-### `npm start`
+### How to use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Display cabinet is designed to be easy and intuitive to use. to organise their collection, different draws can be created, separating different catogeries witjin their collection. within these drawers, the user can then upload images with a description of their items. 
+if there is updated information on such items, the user can later edit drawers at any point with the more up to date information, allowing them to keep their colllection as reliable as possible, also aiding other users in identifying teir own items woth similar characteristics.
+users are also able to like items in drawers. this functionality allows the user t oidentify their most popular display pieces, as well as being able to give a form of feedback to others items.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+There are 3 users already registered:
 
-### `npm test`
+u=admin, p=admin
+u=charlie, p=rex12345
+u=david, p=hamish123
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The system will accept these logins and list drawers and some items.
 
-### `npm run build`
+### component overview
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### asset
+- The component uses the react-bootstrap library for the Spinner component.
+- Conditionally renders a spinner, an image, and a message based on the props.
+- The classNames are managed using the styles object from the Asset.module.css module.
+- Uses the shorthand && logical operator for conditional rendering.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Avatar
+- The component uses the styles object from the Avatar.module.css module for styling.
+- Renders an img element with the specified src, height, and width.
+- Displays additional text if provided.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### MoreDropdown.js
+- Utilizes react-bootstrap for the Dropdown component.
+- Assumes the use of Font Awesome icons for the ellipsis, edit, and delete icons.
+- Forward Ref:
+Uses React.forwardRef to pass a ref to the ellipsis icon, required by Dropdown for positioning.
+- ThreeDots Component:
+Represents the ellipsis icon.
+Passes the ref to the ellipsis icon and handles the click event.
+- Dropdown Structure:
+Utilizes the ThreeDots component as the toggle for the dropdown.
+Dropdown items include icons for edit and delete, with corresponding click handlers (handleEdit and handleDelete).
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### user stories
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. As a User I can register for using display-cabinet.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. As a User I can login to display-cabinet and create Drawers.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. As a User I can add Items to a drawer.
 
-## Learn More
+4. As a User I can open other user Drawers to view their items.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. As an owner of a Drawer I can edit my drawer.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+6. As an owner of a item I can edit my item so that I can fix or update my existing item.
 
-### Code Splitting
+7. As a User I can like other Users items.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Issues
+- There were many issues that I couldn't fix in time presenting.
 
-### Analyzing the Bundle Size
+1. The creating of Drawers, Items and liking items doesn't work as I kept getting 401 unauthorsied.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. The dj-rest-auth login, user and token refresh didn't appear without specifically mapping the view.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. If I included "/dj-rest-auth/token/refresh/" I couldn't register new users or login.

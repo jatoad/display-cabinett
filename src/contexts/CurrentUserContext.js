@@ -24,11 +24,11 @@ export const CurrentUserProvider = ({ children }) => {
             setCurrentUser(test_drawer)
         } else {
             try {
-                const { data } = await axios.get("dj-rest-auth/user/");
-                console.log('HM data ', data)
+                const { data } = await axios.get("/dj-rest-auth/user/");
+                console.log('CUC HM data ', data)
                 setCurrentUser(data);
             } catch (err) {
-                console.log(err);
+                console.log('CUC HM err', err);
             }
         }
     };
